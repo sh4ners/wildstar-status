@@ -1,0 +1,58 @@
+Base:
+  ip: "64.25.34.2"
+  port: "240"
+
+Servers:
+  stormtalon:
+    name: "stormtalon"
+    ip: "64.25.34.201"
+    port: 24000
+    type: "PvE"
+
+  nexus:
+    name: "nexus"
+    ip: "64.25.34.201"
+    port: 24001
+    type: "PvE"
+
+  alizar:
+    name: "alizar"
+    ip: "64.25.34.201"
+    port: 24002
+    type: "PvE"
+
+  pergo:
+    name: "pergo"
+    ip: "64.25.34.202"
+    port: 24000
+    type: "PvE"
+
+  myrcalus:
+    name: "myrcalus"
+    ip: "64.25.34.205"
+    port: 24000
+    type: "PvE"
+
+  caretaker:
+    name: "caretaker"
+    ip: "64.25.34.206"
+    port: 24001
+    type: "PvE"
+
+  mikros:
+    name: "mikros"
+    ip: "64.25.34.206"
+    port: 24002
+    type: "PvE"
+
+  orias:
+    name: "orias"
+    ip: "64.25.34.206"
+    port: 24000
+    type: "PvE"
+
+  widow:
+    name: "widow"
+    ip: "64.25.34.210"
+    port: 24000
+    type: "PvE"
