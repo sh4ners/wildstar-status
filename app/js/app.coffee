@@ -27,3 +27,4 @@ getData = ->
   .done (data) =>
     App.Servers.set "list", data.servers
     s.refresh()
+
