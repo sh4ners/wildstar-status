@@ -10,37 +10,39 @@
 <body>
 
   <script type="text/x-handlebars">
-    <header>
 
-      <div class="row">
-        <div class="small-12 columns center text-center">
-          <h1>
-            <img src="/assets/img/logo.png" />
-            <span>Wildstar Realm Status</span>
-          </h1>
-          <h2>REALM <span>STATUS</span></h2>
+    <div id="skrollr-body">
+      <header>
+        <div class="row">
+          <div class="small-12 columns center text-center">
+            <h1>
+              <img src="/assets/img/logo.png" />
+              <span>Wildstar Realm Status</span>
+            </h1>
+            <h2>REALM <span>STATUS</span></h2>
+          </div>
         </div>
-      </div>
+      </header>
 
-    </header>
-
-    <section id="status">
-      <div class="row">
-        {{outlet}}
-      </div>
-
-    </section>
-
-    <footer>
-      <div class="row">
-        <div class="small-12 columns text-center">
-          <h2>Credits</h2>
-          <p>
-            <a href="https://twitter.com/itg">@itg</a> and <a href="https://twitter.com/stadl0r_">@stadl0r_</a>
-          </p>
+      <section id="status">
+        <div class="row">
+          {{outlet}}
         </div>
-      </div>
-    </footer>
+      </section>
+
+      <footer>
+        <div class="row">
+          <div class="small-12 columns text-center">
+            <h2>Credits</h2>
+            <p>
+              <a href="https://twitter.com/itg">@itg</a> and <a href="https://twitter.com/stadl0r_">@stadl0r_</a>
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      <div class="backgrounds" data-start="top: 0px; bottom: -100px;"  data-end="top: -100px; bottom: 0px;"></div>
+    </div>
 
   </script>
 

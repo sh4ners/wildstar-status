@@ -1,3 +1,8 @@
+
+skrollr = require('../../bower_components/skrollr/dist/skrollr.min.js')
+s = skrollr.init
+  smoothScrolling: false
+
 module.exports = App = Ember.Application.create()
 
 App.Router.map ->
@@ -13,13 +18,12 @@ App.IndexRoute = Ember.Route.extend
   render: ->
     @_super()
     setInterval getData, 3000
+    console.log "loaded"
 
 getData = ->
   $.ajax
     url: "/api/servers/list"
     context: document.body
   .done (data) =>
-    console.log data
-    # for key, value of data
-    #   servers.push value
     App.Servers.set "list", data.servers
+    s.refresh()
