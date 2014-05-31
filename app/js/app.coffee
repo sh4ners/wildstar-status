@@ -15,7 +15,7 @@ App.IndexRoute = Ember.Route.extend
     init()
     console.log App.Servers
 
-getData: ->
+getData = ->
   console.log "getting data"
   $.ajax
     url: "/api/servers/list"
