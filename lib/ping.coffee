@@ -1,21 +1,27 @@
 
 # Net Ping
-tcpp         = require("tcp-ping")
-config       = require("config")
-events       = require('events')
-EventEmitter = require('events').EventEmitter
+tcpp          = require("tcp-ping")
+config        = require("config")
+events        = require('events')
+EventEmitter  = require('events').EventEmitter
 
-servers      = config.Servers
-base         = config.Base
+serversConfig = config.Servers
+base          = config.Base
 
 
 class Ping extends EventEmitter
   servers: {}
 
-  constructor: -> return
+  constructor: -> @scanKnownInterval()
+
+  scanKnownInterval: ->
+    @scanKnownProxy()
+    this.on "probing:complete", => setInterval @scanKnownProxy, 3000
+
+  scanKnownProxy: => @scanKnown()
 
   probe: (server) ->
-    server.status = "offline"
+    status = "offline"
     tcpp.ping {adress: server.ip, port: server.port}, (error, data) =>
 
       unless server.name?
@@ -24,40 +30,46 @@ class Ping extends EventEmitter
       msg = "[#{name}] "
 
       unless isNaN(data.avg)
-        server.status = "online"
+        status = "online"
 
-      msg += server.status
+      msg += status
 
-      if server.status == "online"
+      if status == "online"
         msg += " - #{Math.round(data.avg)}ms"
 
-      console.log "#{msg}"
       serverData = {
         name: server.name
-        status: server.status
+        status: status
         type: server.type
+        delay: Math.round(data.avg)
       }
-      @servers[name] = serverData
-      this.emit 'probed'
+
+      this.emit 'probed', name, serverData, msg
 
   scanKnown: ->
     console.log "\n### INITIALIZING KNOWN SCAN!!!\n"
 
-    for key, server of servers
+    for key, server of serversConfig
       @probe(server)
 
-    totalServers = (k for own k of servers).length
+    totalServers = (k for own k of serversConfig).length
     probeCount = 0
 
-    this.on 'probed', =>
+    handleProbe = (name, data, msg) =>
+      console.log msg
+      @servers[data.name] = data
       probeCount++
       if (probeCount == totalServers)
         console.log "KNOWN SCAN :: DONE"
         this.emit "probing:complete"
+        this.removeListener('probed', handleProbe)
+
+    this.on 'probed', handleProbe
 
   superScan: ->
     console.log "\n### INITIALIZING SUPER SCAN!!!\n"
 
+    superServers = {}
     for i in [0..10]
       server = {}
       i = "0" + i if i < 10
@@ -66,6 +78,16 @@ class Ping extends EventEmitter
         k = "0" + k if k < 10
         server.port = base.port + k
         @probe(server)
+
+    totalServers = superServers.length
+    probeCount = 0
+
+    this.on 'probed', (name, data, msg) =>
+      console.log msg if (data.status == 'online')
+      probeCount++
+      if (probeCount == totalServers)
+        console.log "KNOWN SCAN :: DONE"
+        this.emit "probing:complete"
 
     console.log "SS::DONE"
 

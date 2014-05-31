@@ -27,10 +27,10 @@ app.get '/', (req, res) ->
 
 app.get '/api/servers/list', (req, res) ->
   res.setHeader('Content-Type', 'application/json')
-
-  ping.scanKnown()
-  ping.on "probing:complete", =>
-    res.end(JSON.stringify(ping.servers, null, 3))
+  servers = []
+  for key, value of ping.servers
+    servers.push value
+  res.end(JSON.stringify(servers, null, 3))
 
 module.exports = webserver
 

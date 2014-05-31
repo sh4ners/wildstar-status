@@ -71,8 +71,8 @@ Servers:
   # Roleplaying
   evindra:
     name: Evindra
-    ip: null
-    port: null
+    ip: "64.25.34.203"
+    port: 24000
     type: RP PvE
     status: offline
 
