@@ -16,7 +16,10 @@ class Ping extends EventEmitter
 
   scanKnownInterval: ->
     @scanKnownProxy()
-    this.on "probing:complete", => setInterval @scanKnownProxy, 3000
+    callback = =>
+      this.removeAllListeners("probing:complete", callback)
+      setInterval @scanKnownProxy, 3000
+    this.on "probing:complete", callback
 
   scanKnownProxy: => @scanKnown()
 
@@ -57,12 +60,15 @@ class Ping extends EventEmitter
 
     handleProbe = (name, data, msg) =>
       console.log msg
+
       @servers[data.name] = data
       probeCount++
       if (probeCount == totalServers)
+
+        # seriously, clean up the listener immediately!
+        this.removeAllListeners('probed', handleProbe)
         console.log "KNOWN SCAN :: DONE"
         this.emit "probing:complete"
-        this.removeListener('probed', handleProbe)
 
     this.on 'probed', handleProbe
 

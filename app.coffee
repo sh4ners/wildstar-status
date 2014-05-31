@@ -27,10 +27,12 @@ app.get '/', (req, res) ->
 
 app.get '/api/servers/list', (req, res) ->
   res.setHeader('Content-Type', 'application/json')
-  servers = []
+  payload =
+    servers: []
+
   for key, value of ping.servers
-    servers.push value
-  res.end(JSON.stringify(servers, null, 3))
+    payload.servers.push value
+  res.end(JSON.stringify(payload, null, 3))
 
 module.exports = webserver
 

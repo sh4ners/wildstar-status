@@ -12,14 +12,14 @@ App.IndexController = Ember.ObjectController.extend
 App.IndexRoute = Ember.Route.extend
   render: ->
     @_super()
-    getData()
+    setInterval getData, 3000
 
 getData = ->
   $.ajax
     url: "/api/servers/list"
     context: document.body
   .done (data) =>
-    servers = []
-    for key, value of data
-      servers.push value
-    App.Servers.set "list", servers
+    console.log data
+    # for key, value of data
+    #   servers.push value
+    App.Servers.set "list", data.servers
