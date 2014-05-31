@@ -15,14 +15,15 @@ App.IndexRoute = Ember.Route.extend
     init()
     console.log App.Servers
 
-
-init = ->
+getData: ->
+  console.log "getting data"
   $.ajax
     url: "/api/servers/list"
     context: document.body
   .done (data) =>
-
     servers = []
     for key, value of data
       servers.push value
     App.Servers.set "list", servers
+
+init = -> setInterval( getData, 3000 )
