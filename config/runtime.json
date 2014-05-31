@@ -1,1 +1,14 @@
-{}
+{
+  "Servers": {
+    "avatus": {},
+    "caretaker": {},
+    "mikros": {},
+    "orias": {},
+    "stormtalon": {},
+    "thunderfoot": {},
+    "pago": {},
+    "pergo": {},
+    "widow": {},
+    "myrcalus": {}
+  }
+}
