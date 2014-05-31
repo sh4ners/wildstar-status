@@ -6,7 +6,7 @@ Base:
 Servers:
   avatus:
     name: Avatus
-    ip: "64.25.34.201"
+    ip: "64.25.34.208"
     port: 24002
     type: PvE
     status: offline
@@ -20,8 +20,8 @@ Servers:
 
   mikros:
     name: Mikros
-    ip: "64.25.34.206"
-    port: 24002
+    ip: "64.25.34.207"
+    port: 24000
     type: PvE
     status: offline
 
@@ -49,8 +49,8 @@ Servers:
   # PVP
   pago:
     name: Pago
-    ip: "64.25.34.201"
-    port: 24001
+    ip: "64.25.34.209"
+    port: 24000
     type: PvP
     status: offline
 

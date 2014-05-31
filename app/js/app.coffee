@@ -12,7 +12,7 @@ App.IndexController = Ember.ObjectController.extend
 App.IndexRoute = Ember.Route.extend
   render: ->
     @_super()
-    init()
+    getData()
 
 getData = ->
   $.ajax
@@ -23,5 +23,3 @@ getData = ->
     for key, value of data
       servers.push value
     App.Servers.set "list", servers
-
-init = -> setInterval( getData, 3000 )

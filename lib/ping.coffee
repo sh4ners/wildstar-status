@@ -32,9 +32,12 @@ class Ping extends EventEmitter
         msg += " - #{Math.round(data.avg)}ms"
 
       console.log "#{msg}"
-      delete server.port
-      delete server.ip
-      @servers[name] = server
+      serverData = {
+        name: server.name
+        status: server.status
+        type: server.type
+      }
+      @servers[name] = serverData
       this.emit 'probed'
 
   scanKnown: ->

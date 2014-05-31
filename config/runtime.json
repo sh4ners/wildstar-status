@@ -1,14 +1,28 @@
 {
   "Servers": {
-    "avatus": {},
-    "caretaker": {},
-    "mikros": {},
-    "orias": {},
-    "stormtalon": {},
-    "thunderfoot": {},
-    "pago": {},
-    "pergo": {},
-    "widow": {},
-    "myrcalus": {}
+    "caretaker": {
+      "status": "online"
+    },
+    "mikros": {
+      "status": "online"
+    },
+    "orias": {
+      "status": "online"
+    },
+    "stormtalon": {
+      "status": "online"
+    },
+    "pago": {
+      "status": "online"
+    },
+    "pergo": {
+      "status": "online"
+    },
+    "widow": {
+      "status": "online"
+    },
+    "myrcalus": {
+      "status": "online"
+    }
   }
 }
