@@ -2,7 +2,11 @@
 http    = require('http')
 express = require('express')
 path    = require('path')
+q       = require('q')
 ping    = require('./lib/ping.coffee')
+
+events  = require('events')
+emitter = new events.EventEmitter()
 
 
 app = express()
@@ -20,6 +24,13 @@ webserver.listen(port)
 
 app.get '/', (req, res) ->
   res.render(basePath + '/.generated/index.html')
+
+app.get '/api/servers/list', (req, res) ->
+  res.setHeader('Content-Type', 'application/json')
+
+  ping.scanKnown()
+  ping.on "probing:complete", =>
+    res.end(JSON.stringify(ping.servers, null, 3))
 
 module.exports = webserver
 

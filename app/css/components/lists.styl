@@ -1,0 +1,19 @@
+
+.inline-list {
+  padding-left: 0;
+  > * {
+    display: inline-block;
+  }
+
+  &.bullet {
+    > * {
+      &:first-child:before { display: none; }
+      &:before {
+        display: inline-block;
+        content: '•';
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+}

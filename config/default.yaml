@@ -8,51 +8,60 @@ Servers:
     ip: "64.25.34.201"
     port: 24000
     type: "PvE"
+    status: offline
 
   nexus:
     name: "nexus"
     ip: "64.25.34.201"
     port: 24001
     type: "PvE"
+    status: offline
 
   alizar:
     name: "alizar"
     ip: "64.25.34.201"
     port: 24002
     type: "PvE"
+    status: offline
 
   pergo:
     name: "pergo"
     ip: "64.25.34.202"
     port: 24000
     type: "PvE"
+    status: offline
 
   myrcalus:
     name: "myrcalus"
     ip: "64.25.34.205"
     port: 24000
     type: "PvE"
+    status: offline
 
   caretaker:
     name: "caretaker"
     ip: "64.25.34.206"
     port: 24001
     type: "PvE"
+    status: offline
 
   mikros:
     name: "mikros"
     ip: "64.25.34.206"
     port: 24002
     type: "PvE"
+    status: offline
 
   orias:
     name: "orias"
     ip: "64.25.34.206"
     port: 24000
     type: "PvE"
+    status: offline
 
   widow:
     name: "widow"
     ip: "64.25.34.210"
     port: 24000
     type: "PvE"
+    status: offline

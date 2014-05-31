@@ -1,11 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Firepit</title>
+  <title>Wildstar Realm Status</title>
+
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Jockey+One'>
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
-  <h1>Hello World</h1>
+
+  <script type="text/x-handlebars">
+    <header>
+
+      <div class="row">
+        <div class="small-12 columns center text-center">
+          <h1>
+            <img src="/assets/img/logo.png" />
+            <span>Wildstar Realm Status</span>
+          </h1>
+          <h2>REALM <span>STATUS</span></h2>
+        </div>
+      </div>
+
+    </header>
+
+    <section id="status">
+      <div class="row">
+        {{outlet}}
+      </div>
+
+    </section>
+
+    <footer>
+      <div class="row">
+        <div class="small-12 columns text-center">
+          <h2>Credits</h2>
+          <p>
+            <a href="https://twitter.com/itg">@itg</a> and <a href="https://twitter.com/stadl0r_">@stadl0r_</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    {{#each server in list}}
+      <div class="small-12 medium-6 columns text-center">
+        <div {{bind-attr class=server.status}}>
+          <h3>{{server.name}} <span class="grey">({{server.type}})</span></h3>
+        </div>
+      </div>
+    {{/each}}
+  </script>
+
   <script src="/vendor/jquery/dist/jquery.min.js"></script>
   <script src="/vendor/handlebars/handlebars.js"></script>
   <script src="/vendor/ember/ember.js"></script>

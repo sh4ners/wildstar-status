@@ -1,0 +1,62 @@
+
+build-grid(class = 'small', columns = 12) {
+
+  // Iterate through columns
+  for i in (1..columns) {
+    percent-width = 1% * ((i / columns) * 100)
+
+    // Build the column class
+    .{class}-{i} {
+      width: percent-width;
+      padding-left: (column-gutter / 2);
+      padding-right: (column-gutter / 2);
+    }
+  }
+}
+
+grid-column(columns = 1) {
+  percent-width = 1% * ((i / columns) * 100);
+  width: percent-width;
+}
+
+build-grid();
+
+@media small-up {
+  build-grid(small);
+}
+
+@media medium-up {
+  build-grid(medium);
+}
+
+@media large-up {
+  build-grid(large);
+}
+
+.column,
+.columns {
+  float: left;
+  position: relative;
+
+  .center {
+    text-align: center;
+  }
+
+  img { width: 100%; }
+}
+
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: (column-gutter / 2);
+  width: 100%;
+  max-width: row-width;
+  clearfix();
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+* { box-sizing: border-box; }

@@ -1,0 +1,60 @@
+
+// Brand colors
+black                 = #33364d;
+grey                  = #424360;
+blue                  = #8080b1;
+dark-blue             = #050618;
+green                 = #35d90e;
+light-green           = #408739;
+red                   = #d44e49;
+dark-red              = #b52d2d;
+gold                  = #dfc217;
+yellow                = #fff955;
+off-white             = #f2f6f6;
+white                 = #fff;
+
+
+// Base font settings
+base-font             = 'Jockey One', sans-serif;
+base-line-height      = 1.6;
+base-font-color       = black;
+base-font-weight      = 600;
+base-font-size        = 16px;
+base-text-shadow      = none;
+
+
+// Header font settings
+header-font           = "Jockey One", sans-serif;
+header-font-size      = 2.4em;
+header-font-color     = white;
+header-transform      = uppercase;
+header-weight         = 600;
+
+
+// Code font settings
+code-font             = "source-code-pro",sans-serif;
+code-background-color = dark-blue;
+code-font-color       = off-white;
+code-font-size        = 14px;
+code-font-weight      = 800;
+code-line-height      = 1.4;
+code-border           = 0 2px 0 0 white;
+code-comment-color    = rgba(code-font-color, .5);
+
+
+
+// Grid settings
+total-columns = 12;
+row-width = 1000px;
+column-gutter = 30px;
+
+// Media Query Ranges
+small-range = (0em 40em);
+medium-range = min(40.063em, 64em);
+large-range = min(64.063em, 90em);
+
+screen = "only screen";
+
+small-up = screen;
+medium-up = "screen and (min-width: %s)" % medium-range;
+large-up = "screen and (min-width: %s)" % large-range;
