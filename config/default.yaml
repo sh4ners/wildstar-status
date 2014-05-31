@@ -7,7 +7,7 @@ Servers:
   avatus:
     name: Avatus
     ip: "64.25.34.208"
-    port: 24002
+    port: 24000
     type: PvE
     status: offline
 
