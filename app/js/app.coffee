@@ -18,7 +18,6 @@ App.IndexRoute = Ember.Route.extend
   render: ->
     @_super()
     setInterval getData, 3000
-    console.log "loaded"
 
 getData = ->
   $.ajax
