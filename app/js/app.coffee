@@ -1,5 +1,5 @@
 
-skrollr = require('../../bower_components/skrollr/dist/skrollr.min.js')
+
 s = skrollr.init
   smoothScrolling: false
 
