@@ -15,6 +15,7 @@ header {
     span { display: none; }
   }
   h2 {
+    text-shadow: 0 1px 0 dark-blue;
     color: grey;
     font-size: 48px;
     font-weight: 100;
@@ -38,6 +39,18 @@ footer {
 
 
 #status {
+
+  .loading {
+    box-shadow: 0 0 0 1px grey;
+    display: inline-block;
+    padding: 20px 60px 20px;
+    h3, h4 {
+      color: grey;
+      margin-bottom: 0;
+      margin-top: 0;
+      padding: 0;
+    }
+  }
 
   h3 {
     color: white;
@@ -77,6 +90,7 @@ footer {
 
 
 @media medium-up {
+  #status .loading { padding-bottom: 25px; }
   #status h3 {
     font-size: 32px;
     &:before {

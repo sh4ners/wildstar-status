@@ -45,13 +45,23 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="index">
-    {{#each server in list}}
-      <div class="small-12 medium-6 columns text-center">
-        <div {{bind-attr class=server.status}}>
-          <h3>{{server.name}} <span class="grey">({{server.type}})</span></h3>
+
+      {{#if list}}
+      {{else}}
+        <div class="small-12 columns text-center">
+          <div class="loading">
+            <h3>Loading data...</h3>
+            <h4>Please wait</h4>
+          </div>
         </div>
-      </div>
-    {{/each}}
+      {{/if}}
+      {{#each server in list}}
+        <div class="small-12 medium-6 columns text-center">
+          <div {{bind-attr class=server.status}}>
+            <h3>{{server.name}} <span class="grey">({{server.type}})</span></h3>
+          </div>
+        </div>
+      {{/each}}
   </script>
 
   <script src="/vendor/jquery/dist/jquery.min.js"></script>
