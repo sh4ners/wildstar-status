@@ -13,7 +13,6 @@ App.IndexRoute = Ember.Route.extend
   render: ->
     @_super()
     init()
-    console.log App.Servers
 
 getData = ->
   console.log "getting data"
