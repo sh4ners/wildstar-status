@@ -95,5 +95,5 @@ Servers:
     name: Myrcalus
     ip: "64.25.34.205"
     port: 24001
-    type: PvE
+    type: Oceanic PvE
     status: offline
