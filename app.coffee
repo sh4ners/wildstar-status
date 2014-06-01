@@ -25,9 +25,19 @@ webserver.listen(port)
 app.get '/', (req, res) ->
   res.render(basePath + '/.generated/index.html')
 
+app.get '/:filename.html', (req, res) ->
+  res.render(path.join(basePath, '.generated', req.params.filename + ".html"))
+
 app.get '/api/servers/list', (req, res) ->
   res.setHeader('Content-Type', 'application/json')
+
   payload =
+    realmstatus: null
+    services:
+      "naauth": null
+      "euauth": null
+      "http": null
+      "forums": null
     servers: []
 
   for key, value of ping.servers

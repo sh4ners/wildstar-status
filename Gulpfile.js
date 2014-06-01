@@ -26,7 +26,7 @@ var paths = {
   cssInput: path.join(baseCssPath, 'main.styl'),
   cssOutput: path.join(baseStaticPath, 'css'),
   coffeePath: [path.join(baseJsPath, '**', '*.coffee')],
-  coffeeInput: path.join(baseJsPath, 'main.coffee'),
+  coffeeInput: path.join(baseJsPath, 'bash.coffee'),
   coffeeOutput: path.join(baseStaticPath, 'js'),
   ejsPath:  [
     path.join(baseAppPath, '**', '*.ejs')
@@ -60,11 +60,6 @@ gulp.task('test', function() {
 });
 
 
-gulp.task('default', function () {
-  console.log("default task does nothing, hombre.")
-});
-
-
 //
 // Stylus
 //
@@ -93,7 +88,7 @@ gulp.task('coffee', function() {
     })
       .on('error', gutil.log)
       .on('error', gutil.beep))
-    .pipe(rename('main.js'))
+    .pipe(rename('bash.js'))
     .pipe(gulp.dest(paths.coffeeOutput))
 
   gulp.src(path.join(__dirname, 'app', 'js', 'app.coffee'), { read: false })

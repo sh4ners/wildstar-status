@@ -48,23 +48,28 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="index">
-
-      {{#if list}}
-      {{else}}
-        <div class="small-12 columns text-center">
-          <div class="loading">
-            <h3>Loading data...</h3>
-            <h4>Please wait</h4>
-          </div>
-        </div>
-      {{/if}}
+    {{#if App.loaded}}
+      <div class="servers-list">
       {{#each server in list}}
-        <div class="small-12 medium-6 columns text-center">
-          <div {{bind-attr class=server.status}}>
-            <h3>{{server.name}} <span class="grey">({{server.type}})</span></h3>
+        <div class="small-12 medium-6 columns">
+          <div {{bind-attr class="server.status server.speed"}}>
+            <h3>{{server.name}} <span class="grey">({{server.type}}) <small>{{server.latency}}ms</small></span></h3>
           </div>
         </div>
       {{/each}}
+      </div>
+    {{else}}
+      <div class="small-12 medium-8 columns small-center">
+        <div class="loading">
+          <p class="line-1">
+            <span class="typed"></span>
+          </p>
+          <p class="line-2">&lt;<span class="status">INITIALIZING</span>&gt; Scanning known servers...</p>
+          <p class="line-3">&lt;<span class="status">COMPLETED</span>&gt; Known servers scanned.
+          <p class="line-4">&gt; Executing Interface....</p>
+        </div>
+      </div>
+    {{/if}}
   </script>
 
   <script src="/vendor/jquery/dist/jquery.min.js"></script>

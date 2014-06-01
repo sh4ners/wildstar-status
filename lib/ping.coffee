@@ -1,56 +1,84 @@
 
 # Net Ping
 tcpp          = require("tcp-ping")
+colors        = require('colors')
 config        = require("config")
 events        = require('events')
 EventEmitter  = require('events').EventEmitter
 
-serversConfig = config.Servers
-base          = config.Base
+serversConfig = config.servers
+
+
+base =
+  ip: "64.25.34.2"
+  port: 240
 
 
 class Ping extends EventEmitter
-  servers: {}
+  servers: []
+  realmstatus: null
+  services:
+    "naauth": null
+    "euauth": null
+    "http": null
+    "forums": null
+
 
   constructor: -> @scanKnownInterval()
 
   scanKnownInterval: ->
-    @scanKnownProxy()
+    @getServerData()
     callback = =>
       this.removeAllListeners("probing:complete", callback)
-      setInterval @scanKnownProxy, 3000
+      setInterval @getServerData, 3000
     this.on "probing:complete", callback
 
-  scanKnownProxy: => @scanKnown()
+  getServerData: => @scanKnown()
+
+  findServerIndex: (data) ->
+    for server, index in @servers
+      return index if server.id == data.id
+
+  updateServerData: (data) ->
+    serverIndex = @findServerIndex(data)
+    if serverIndex > -1
+      # Found the server
+      @servers[serverIndex] = data
+
+    else
+      # Can't locate the server
+      @servers.push data
+
+
 
   probe: (server) ->
     status = "offline"
     tcpp.ping {adress: server.ip, port: server.port}, (error, data) =>
 
-      unless server.name?
-        name = "#{data.adress}:#{data.port}"
-      else name = server.name
-      msg = "[#{name}] "
+      status = "online" unless isNaN(data.avg)
+      latency = null
+      latency = Math.round(data.avg) if status == "online"
 
-      unless isNaN(data.avg)
-        status = "online"
-
-      msg += status
-
-      if status == "online"
-        msg += " - #{Math.round(data.avg)}ms"
+      speed = null
+      if (latency <= 100) then speed = "fast"
+      else if (latency > 100) then speed = "medium"
+      else if (latency < 300) then speed = "slow"
 
       serverData = {
+        id: server.id
         name: server.name
         status: status
+        location: server.location
         type: server.type
-        delay: Math.round(data.avg)
+        latency: latency
+        speed: speed
       }
 
-      this.emit 'probed', name, serverData, msg
+      this.emit 'probed', serverData
 
   scanKnown: ->
-    console.log "\n### INITIALIZING KNOWN SCAN!!!\n"
+    state = "INITIALIZING".red
+    console.log "\n# ***************************************\n  <#{state}> SCANNING KNOWN SERVERS".white
 
     for key, server of serversConfig
       @probe(server)
@@ -58,19 +86,54 @@ class Ping extends EventEmitter
     totalServers = (k for own k of serversConfig).length
     probeCount = 0
 
-    handleProbe = (name, data, msg) =>
-      console.log msg
+    handleProbe = (data) =>
+      # console.log msg
+      @updateServerData(data)
 
-      @servers[data.name] = data
       probeCount++
       if (probeCount == totalServers)
 
         # seriously, clean up the listener immediately!
         this.removeAllListeners('probed', handleProbe)
-        console.log "KNOWN SCAN :: DONE"
         this.emit "probing:complete"
 
+        state = "RESULT".red
+        console.log "\n  :: <#{state}> LISTING KNOWN SERVERS\n".white
+        for server in @servers
+          @logServer(server)
+
+        state = "EXECUTED".red
+        console.log "\n  <#{state}> KNOWN SERVERS SCANNED\n# ***************************************\n".white
+
     this.on 'probed', handleProbe
+
+  logServer: (server) ->
+
+    colors.setTheme(
+      online: 'white'
+      offline: 'grey'
+      fast: 'green'
+      medium: 'yellow'
+      slow: 'red'
+    )
+
+    msg = {}
+    msg.namePrefix = "    > [".grey
+    msg.nameSuffix = "]".grey
+    msgSpeed = if (server.speed) then server.speed else "white"
+
+    msg.name = "#{server.name}"[server.status]
+    msg.latency = " #{server.latency}ms"[msgSpeed]
+    msg.location = "#{server.location}, ".grey
+    msg.type = "#{server.type}".grey
+
+    console.log msg.namePrefix + msg.name + msg.nameSuffix + msg.latency + " (".grey + msg.location + msg.type + ")".grey
+
+
+
+  getRealmStatus: ->
+
+
 
   superScan: ->
     console.log "\n### INITIALIZING SUPER SCAN!!!\n"
@@ -88,8 +151,8 @@ class Ping extends EventEmitter
     totalServers = superServers.length
     probeCount = 0
 
-    this.on 'probed', (name, data, msg) =>
-      console.log msg if (data.status == 'online')
+    this.on 'probed', (data) =>
+      console.log data if (data.status == 'online')
       probeCount++
       if (probeCount == totalServers)
         console.log "KNOWN SCAN :: DONE"
