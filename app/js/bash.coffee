@@ -1,4 +1,3 @@
-require('../../bower_components/typed.js/js/typed.js')
 
 class Bash
   initialized: false
