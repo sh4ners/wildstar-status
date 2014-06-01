@@ -14,13 +14,13 @@ Servers:
   caretaker:
     name: Caretaker
     ip: "64.25.34.206"
-    port: 24001
+    port: 24002
     type: PvE
     status: offline
 
   mikros:
     name: Mikros
-    ip: "64.25.34.207"
+    ip: "64.25.34.204"
     port: 24000
     type: PvE
     status: offline
@@ -41,15 +41,22 @@ Servers:
 
   thunderfoot:
     name: Thunderfoot
-    ip: null
-    port: null
+    ip: "64.25.34.209"
+    port: 24000
     type: PvE
     status: offline
 
   # PVP
+  bloodsworn:
+    name: Bloodsworn
+    ip: "64.25.34.206"
+    port: 24001
+    type: PvP
+    status: offline
+
   pago:
     name: Pago
-    ip: "64.25.34.209"
+    ip: "64.25.34.207"
     port: 24000
     type: PvP
     status: offline
@@ -57,6 +64,13 @@ Servers:
   pergo:
     name: Pergo
     ip: "64.25.34.202"
+    port: 24000
+    type: PvP
+    status: offline
+
+  widow:
+    name: Warbringer
+    ip: "64.25.34.205"
     port: 24000
     type: PvP
     status: offline
@@ -80,6 +94,6 @@ Servers:
   myrcalus:
     name: Myrcalus
     ip: "64.25.34.205"
-    port: 24000
+    port: 24001
     type: PvE
     status: offline
