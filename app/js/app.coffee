@@ -13,9 +13,8 @@ App.rendered = false
 App.Router.map ->
   this.resource('index', { path: '/' })
 
-
 # SERVERS LIST STUFF
-App.Servers = Ember.Object.create
+App.Servers = Ember.ArrayProxy.create
   list: []
 
 # INDEX
@@ -38,7 +37,7 @@ getServersData = ->
   .done (data) =>
     s.refresh()
     App.Bash.setLoaded() unless App.loaded
-    App.Servers.set "list", data.servers
+    App.Servers.set "list", data.servers.sortBy("name")
 
 
 $ -> s.refresh()
