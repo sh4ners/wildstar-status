@@ -25,9 +25,6 @@ webserver.listen(port)
 app.get '/', (req, res) ->
   res.render(basePath + '/.generated/index.html')
 
-app.get '/:filename.html', (req, res) ->
-  res.render(path.join(basePath, '.generated', req.params.filename + ".html"))
-
 app.get '/api/servers/list', (req, res) ->
   res.setHeader('Content-Type', 'application/json')
 
