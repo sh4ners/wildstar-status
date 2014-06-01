@@ -68,6 +68,14 @@ Servers:
     type: PvP
     status: offline
 
+
+  pergo:
+    name: Pergo
+    ip: "64.25.34.209"
+    port: 24001
+    type: PvP
+    status: offline
+
   widow:
     name: Warbringer
     ip: "64.25.34.205"
