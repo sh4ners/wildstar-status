@@ -53,7 +53,10 @@
       {{#each server in list}}
         <div class="small-12 medium-6 columns">
           <div {{bind-attr class="server.status server.speed"}}>
-            <h3>{{server.name}} <span class="grey">({{server.type}}) <small>{{server.latency}}ms</small></span></h3>
+            <h3>
+              <a {{bind-attr href="server.forumUrl"}} target="_blank" title="Official Forums">{{server.name}}</a>
+              <span class="grey"> ({{server.type}}) <small>{{server.latency}}ms</small></span>
+            </h3>
           </div>
         </div>
       {{/each}}

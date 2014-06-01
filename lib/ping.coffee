@@ -72,6 +72,7 @@ class Ping extends EventEmitter
         type: server.type
         latency: latency
         speed: speed
+        forumUrl: server.forumUrl
       }
 
       this.emit 'probed', serverData

@@ -96,7 +96,8 @@ set-indicator-color(background-color, border-color) {
 #status {
 
   h3 {
-    color: white;
+    &, a { color: white; }
+    a:hover { color: gold; }
     font-size: 18px;
     margin-bottom: .6em;
     margin-top: 0;
@@ -135,7 +136,7 @@ set-indicator-color(background-color, border-color) {
   }
 
   .offline h3 {
-    color: grey;
+    &, a { color: grey; }
     &:before { box-shadow: 0 0 0 2px grey; }
   }
 
