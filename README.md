@@ -30,3 +30,4 @@
 1. Create your heroku instance `heroku create`
 2. Deploy `git push heroku master`
 3. Dance.
+
