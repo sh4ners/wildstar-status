@@ -79,7 +79,7 @@ class Ping extends EventEmitter
 
   scanKnown: ->
     state = "INITIALIZING".red
-    console.log "\n# ***************************************\n  <#{state}> SCANNING KNOWN SERVERS".white
+    #console.log "\n# ***************************************\n  <#{state}> SCANNING KNOWN SERVERS".white
 
     for key, server of serversConfig
       @probe(server)
@@ -99,12 +99,12 @@ class Ping extends EventEmitter
         this.emit "probing:complete"
 
         state = "RESULT".red
-        console.log "\n  :: <#{state}> LISTING KNOWN SERVERS\n".white
-        for server in @servers
-          @logServer(server)
+        #console.log "\n  :: <#{state}> LISTING KNOWN SERVERS\n".white
+        #for server in @servers
+        #  @logServer(server)
 
         state = "EXECUTED".red
-        console.log "\n  <#{state}> KNOWN SERVERS SCANNED\n# ***************************************\n".white
+        #console.log "\n  <#{state}> KNOWN SERVERS SCANNED\n# ***************************************\n".white
 
     this.on 'probed', handleProbe
 
@@ -128,7 +128,7 @@ class Ping extends EventEmitter
     msg.location = "#{server.location}, ".grey
     msg.type = "#{server.type}".grey
 
-    console.log msg.namePrefix + msg.name + msg.nameSuffix + msg.latency + " (".grey + msg.location + msg.type + ")".grey
+    #console.log msg.namePrefix + msg.name + msg.nameSuffix + msg.latency + " (".grey + msg.location + msg.type + ")".grey
 
 
 
@@ -137,7 +137,7 @@ class Ping extends EventEmitter
 
 
   superScan: ->
-    console.log "\n### INITIALIZING SUPER SCAN!!!\n"
+    #console.log "\n### INITIALIZING SUPER SCAN!!!\n"
 
     superServers = {}
     for i in [0..10]
@@ -153,13 +153,13 @@ class Ping extends EventEmitter
     probeCount = 0
 
     this.on 'probed', (data) =>
-      console.log data if (data.status == 'online')
+      #console.log data if (data.status == 'online')
       probeCount++
       if (probeCount == totalServers)
-        console.log "KNOWN SCAN :: DONE"
+        #console.log "KNOWN SCAN :: DONE"
         this.emit "probing:complete"
 
-    console.log "SS::DONE"
+    #console.log "SS::DONE"
 
 
 
