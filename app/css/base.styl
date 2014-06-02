@@ -3,14 +3,20 @@ html, body {
   height: 100%;
 }
 
+img {
+  border: none;
+}
+
 .backgrounds {
+  animation: float 30s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
   content: '';
   display: block;
   position: fixed;
   overflow: hidden;
-  top: 0;
+  top: -20px;
   right: 0;
-  left: 0;
+  bottom: 0;
+  left: -10px;
   z-index: -1;
 
   &:before {
@@ -28,6 +34,7 @@ html, body {
     min-height: 534px;
     z-index: 0;
   }
+
   &:after {
     background-image: url('/assets/img/bg2.jpg');
     background-position: center bottom;
@@ -173,4 +180,23 @@ small {
   font-size: 15px;
   font-weight: 200;
   text-transform: none;
+}
+
+
+@keyframes float {
+  0% {
+    transform: scale(1) translate(0px, 10px);
+  }
+  25% {
+    transform: scale(1.01) translate(10px, 10px);
+  }
+  50% {
+    transform: scale(1.02) translate(10px, 0px);
+  }
+  75% {
+    transform: scale(1.01) translate(10px, 10px);
+  }
+  100% {
+    transform: scale(1) translate(0px, 10px);
+  }
 }

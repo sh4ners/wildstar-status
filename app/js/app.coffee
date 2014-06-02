@@ -1,8 +1,5 @@
 Bash = require('./bash.coffee')
 
-s = skrollr.init
-  smoothScrolling: false
-
 module.exports = window.App = App = Ember.Application.create()
 
 App.Bash = new Bash(App)
@@ -11,7 +8,7 @@ App.loaded = false
 App.rendered = false
 
 App.Router.map ->
-  this.resource('index', { path: '/' })
+  @resource('index', { path: '/' })
 
 # SERVERS LIST STUFF
 App.Servers = Ember.ArrayProxy.create
@@ -35,9 +32,6 @@ getServersData = ->
     url: "/api/servers/list"
     context: document.body
   .done (data) =>
-    s.refresh()
     App.Bash.setLoaded() unless App.loaded
     App.Servers.set "list", data.servers.sortBy("name")
 
-
-$ -> s.refresh()
