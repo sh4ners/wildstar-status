@@ -1,0 +1,59 @@
+block-grid(
+  per-row         = false,
+  spacing         = block-grid-default-spacing,
+  include-spacing = true,
+  base-style      = true) {
+
+  if (base-style) {
+    display: block;
+    padding: 0;
+    margin: 0 -( spacing / 2 );
+    clearfix();
+
+    &>li {
+      display: block;
+      height: auto;
+      float: left;
+      if include-spacing {
+        padding: 0 ( spacing / 2 ) spacing;
+      }
+    }
+  }
+
+  if (per-row) {
+    &>li {
+      width: ( 100% / per-row );
+      if include-spacing {
+        padding: 0 (spacing/2) spacing;
+      }
+      list-style: none;
+
+      &:nth-of-type(1n) { clear: none; }
+      &:nth-of-type({per-row}n+1) { clear: both; }
+    }
+  }
+}
+
+block-grid-html-classes(size, include-spacing) {
+  for i in (1..block-grid-elements) {
+    .{size}-block-grid-{i} {
+      block-grid(i, block-grid-default-spacing, include-spacing, false);
+    }
+  }
+}
+
+[class*="block-grid-"] {
+  block-grid();
+}
+
+@media small-up {
+  block-grid-html-classes(size: small, include-spacing: false);
+}
+
+@media medium-up {
+  block-grid-html-classes(size: medium, include-spacing: false);
+}
+
+@media large-up {
+  block-grid-html-classes(size: large, include-spacing: false);
+}

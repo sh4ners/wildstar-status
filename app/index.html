@@ -49,17 +49,17 @@
 
   <script type="text/x-handlebars" data-template-name="index">
     {{#if App.loaded}}
-      <div class="servers-list">
-      {{#each server in list}}
-        <div class="small-12 medium-6 columns">
-          <div {{bind-attr class="server.status server.speed"}}>
-            <h3>
-              <a {{bind-attr href="server.forumUrl"}} target="_blank" title="Official Forums">{{server.name}}</a>
-              <span class="grey"> ({{server.type}}) <small>{{server.latency}}ms</small></span>
-            </h3>
-          </div>
-        </div>
-      {{/each}}
+      <div class="servers-list small-12 columns">
+        <ul class="small-block-grid-1 medium-block-grid-3">
+          {{#each server in list}}
+            <li {{bind-attr class="server.status server.speed"}}>
+              <h3>
+                <a {{bind-attr href="server.forumUrl"}} target="_blank" title="Official Forums">{{server.name}}</a>
+                <span class="grey"> ({{server.type}}) <small>{{server.latency}}ms</small></span>
+              </h3>
+            </li>
+          {{/each}}
+        </ul>
       </div>
     {{else}}
       <div class="small-12 medium-8 columns small-center">
