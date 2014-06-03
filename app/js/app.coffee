@@ -1,3 +1,4 @@
+calmsoul = require('calmsoul')
 Bash = require('./bash.coffee')
 
 module.exports = window.App = App = Ember.Application.create()
@@ -11,12 +12,53 @@ App.Router.map ->
   @resource('index', { path: '/' })
 
 # SERVERS LIST STUFF
-App.Servers = Ember.ArrayProxy.create
-  list: []
+App.RealmStatus = Ember.ArrayProxy.create
+  servers: []
+
+App.Server = Ember.Object.extend
+  latencyWord: (->
+    n = @get('latency')
+    n = if n? then n + "ms" else "OFFLINE"
+    return n
+  ).property("latency")
+
+App.ServerController = Ember.ObjectController.extend
+  init: -> calmsoul.debug "App.ServerController::init ->"
+
+App.ServersArray = Ember.ArrayProxy.extend
+  init: ->
+    @servers = Ember.A()
+    @set("content", @servers)
+    @_super()
+
+  findServerIndex: (data) ->
+    calmsoul.debug "findServerIndex"
+    for server, index in @servers
+      return index if server.id == data.id
+
+  updateServerData: (data) ->
+    calmsoul.debug "updateServerData"
+    for server, index in data.servers
+      serverIndex = @findServerIndex(server)
+      calmsoul.debug " > #{serverIndex}"
+      if serverIndex > -1
+        # Found the server
+        calmsoul.debug "Found the Server"
+        @servers[serverIndex].setProperties(server)
+
+      else
+        # Can't locate the server
+        calmsoul.debug "Can't locate the server"
+        @servers.push(App.Server.create(server))
+
+App.Servers = App.ServersArray.create()
+
+App.ServersController = Ember.ArrayController.extend
+  itemController: "server"
 
 # INDEX
 App.IndexController = Ember.ObjectController.extend
-  init: -> @set "content", App.Servers
+  init: -> calmsoul.debug "IndexController::init()"
 
 App.IndexRoute = Ember.Route.extend
   render: ->
@@ -29,9 +71,10 @@ App.IndexView = Ember.View.extend
 
 getServersData = ->
   $.ajax
-    url: "/api/servers/list"
+    url: "/api/servers"
     context: document.body
   .done (data) =>
     App.Bash.setLoaded() unless App.loaded
-    App.Servers.set "list", data.servers.sortBy("name")
+    App.Servers.updateServerData(data)
+    # App.RealmStatus.set "servers", data.servers.sortBy("name")
 
