@@ -54,6 +54,8 @@ App.ServersArray = Ember.ArrayProxy.extend
 App.Servers = App.ServersArray.create()
 
 App.ServersController = Ember.ArrayController.extend
+  sortProperties: ['name']
+  sortAscending: true
   itemController: "server"
 
 # INDEX
@@ -76,5 +78,4 @@ getServersData = ->
   .done (data) =>
     App.Bash.setLoaded() unless App.loaded
     App.Servers.updateServerData(data)
-    # App.RealmStatus.set "servers", data.servers.sortBy("name")
 
