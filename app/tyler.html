@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wildstar Realm Status</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+</head>
+<body>
+
+  <script src="/assets/js/calmsoul.js"></script>
+
+  <script>
+
+    var bricks = new Bricks();
+
+    function Bricks() { }
+
+    Bricks.prototype.level = function(levelIndex) {
+
+      console.debug(levelIndex);
+
+      this.level1 = [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+        [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+        [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+      ];
+
+      calmsoul.debug(this["level"+levelIndex]);
+
+    }
+
+    bricks.level(1);
+
+
+  </script>
+
+</body>
+</html>
