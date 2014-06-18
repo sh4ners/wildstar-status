@@ -65,8 +65,21 @@
 
   <script type="text/x-handlebars" data-template-name="servers">
     <div class="servers-list small-12 columns">
+      <h2>North America</h2>
       <ul class="small-block-grid-1 medium-block-grid-3">
-        {{#each}}
+        {{#each servers.NA}}
+          <li {{bind-attr class="status speed"}}>
+            <h3>
+              <a {{bind-attr href="forumUrl"}} target="_blank" title="Official Forums">{{name}}</a>
+              <span class="grey"> ({{type}}) <small>{{latencyWord}}</small></span>
+            </h3>
+          </li>
+        {{/each}}
+      </ul>
+
+      <h2>Europe</h2>
+      <ul class="small-block-grid-1 medium-block-grid-3">
+        {{#each servers.EU}}
           <li {{bind-attr class="status speed"}}>
             <h3>
               <a {{bind-attr href="forumUrl"}} target="_blank" title="Official Forums">{{name}}</a>
