@@ -60,9 +60,10 @@ class Ping extends EventEmitter
       latency = Math.round(data.avg) if status == "online"
 
       speed = null
-      if (latency <= 100) then speed = "fast"
-      else if (latency > 150) then speed = "medium"
-      else if (latency > 250) then speed = "slow"
+      if      (latency == null) then speed = null
+      else if (latency > 250)   then speed = "slow"
+      else if (latency > 150)   then speed = "medium"
+      else if (latency <= 100)  then speed = "fast"
 
       serverData = {
         id: server.id

@@ -26,18 +26,18 @@ App.Server = Ember.Object.extend
 App.ServerController = Ember.ObjectController.extend
   init: -> calmsoul.debug "App.ServerController::init ->"
 
-App.ServersObject = Ember.ObjectProxy.extend
+App.ServersObjectProxy = Ember.ObjectProxy.extend
   init: ->
-    @servers =
-      NA: Ember.A()
-      EU: Ember.A()
+    @servers = Ember.Object.create()
     @set("content", App.RealmStatus)
     @_super()
 
 
   filterAndUpdateServers:  ->
-    @servers.NA = App.RealmStatus.servers.filterBy("location", "na").sortBy("name")
-    @servers.EU = App.RealmStatus.servers.filterBy("location", "eu").sortBy("name")
+    na = App.RealmStatus.servers.filterBy("location", "na").sortBy("name")
+    eu = App.RealmStatus.servers.filterBy("location", "eu").sortBy("name")
+    @servers.set "NA", na
+    @servers.set "EU", eu
 
 
   findServerIndex: (data) ->
@@ -62,7 +62,7 @@ App.ServersObject = Ember.ObjectProxy.extend
 
     @filterAndUpdateServers()
 
-App.Servers = App.ServersObject.create()
+App.Servers = App.ServersObjectProxy.create()
 
 
 
