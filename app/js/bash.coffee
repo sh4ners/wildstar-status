@@ -11,7 +11,7 @@ class Bash
     @initialized = true
     @$bashEl = $(".loading")
     @$bashEl.addClass("show")
-    setTimeout @runBashProxy, 600
+    setTimeout @runBashProxy, 300
 
   showLine: (n, delay) ->
     setTimeout( =>
@@ -22,7 +22,7 @@ class Bash
     $(".loading .typed").typed({
       strings: ["", "./wildstar-status -a list"],
       typeSpeed: 0,
-      backDelay: 300
+      backDelay: 100
       callback: =>
         @$bashEl.find("#typed-cursor").addClass('hide')
         @showLine(2, 0).apply
