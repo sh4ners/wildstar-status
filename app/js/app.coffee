@@ -13,7 +13,8 @@ App.Router.map ->
 
 # SERVERS LIST STUFF
 App.RealmStatus = Ember.ArrayProxy.create
-  servers: []
+  servers: Ember.A()
+
 
 App.Server = Ember.Object.extend
   latencyWord: (->
@@ -25,15 +26,23 @@ App.Server = Ember.Object.extend
 App.ServerController = Ember.ObjectController.extend
   init: -> calmsoul.debug "App.ServerController::init ->"
 
-App.ServersArray = Ember.ArrayProxy.extend
+App.ServersObject = Ember.ObjectProxy.extend
   init: ->
-    @servers = Ember.A()
-    @set("content", @servers)
+    @servers =
+      NA: Ember.A()
+      EU: Ember.A()
+    @set("content", App.RealmStatus)
     @_super()
+
+
+  filterAndUpdateServers:  ->
+    @servers.NA = App.RealmStatus.servers.filterBy("location", "na").sortBy("name")
+    @servers.EU = App.RealmStatus.servers.filterBy("location", "eu").sortBy("name")
+
 
   findServerIndex: (data) ->
     calmsoul.debug "findServerIndex"
-    for server, index in @servers
+    for server, index in App.RealmStatus.servers
       return index if server.id == data.id
 
   updateServerData: (data) ->
@@ -44,19 +53,18 @@ App.ServersArray = Ember.ArrayProxy.extend
       if serverIndex > -1
         # Found the server
         calmsoul.debug "Found the Server"
-        @servers[serverIndex].setProperties(server)
+        App.RealmStatus.servers[serverIndex].setProperties(server)
 
       else
         # Can't locate the server
         calmsoul.debug "Can't locate the server"
-        @servers.push(App.Server.create(server))
+        App.RealmStatus.servers.push(App.Server.create(server))
 
-App.Servers = App.ServersArray.create()
+    @filterAndUpdateServers()
 
-App.ServersController = Ember.ArrayController.extend
-  sortProperties: ['name']
-  sortAscending: true
-  itemController: "server"
+App.Servers = App.ServersObject.create()
+
+
 
 # INDEX
 App.IndexController = Ember.ObjectController.extend

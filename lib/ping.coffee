@@ -62,7 +62,7 @@ class Ping extends EventEmitter
       speed = null
       if (latency <= 100) then speed = "fast"
       else if (latency > 100) then speed = "medium"
-      else if (latency < 300) then speed = "slow"
+      else if (latency > 300) then speed = "slow"
 
       serverData = {
         id: server.id

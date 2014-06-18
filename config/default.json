@@ -62,6 +62,179 @@
     {
       "id": 9, "name": "Rowsdower", "ip": "64.25.34.209", "port": 24001, "location": "na", "type": "PvP", "status": "offline",
       "forumUrl": "https://forums.wildstar-online.com/forums/index.php?/forum/248-rowsdower-pvp/"
+    },
+    // EU
+
+    {
+      "id": 14,
+      "name": "Ascendancy",
+      "ip": "206.127.148.168",
+      "port": 24000,
+      "location": "eu",
+      "type": "PvE",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 15,
+      "name": "Archon",
+      "ip": "206.127.148.170",
+      "port": 24000,
+      "location": "eu",
+      "type": "PvE",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 16,
+      "name": "Contagion",
+      "ip": "206.127.148.168",
+      "port": 24001,
+      "location": "eu",
+      "type": "PvP",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 17,
+      "name": "Deadstar",
+      "ip": "206.127.148.177",
+      "port": 24000,
+      "location": "eu",
+      "type": "PvP",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 18,
+      "name": "Eko",
+      "ip": "206.127.148.173",
+      "port": 24000,
+      "location": "eu",
+      "type": "PvE",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 19,
+      "name": "Giaus",
+      "ip": "206.127.148.175",
+      "port": 24001,
+      "location": "eu",
+      "type": "PvP",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 20,
+      "name": "Hazak",
+      "ip": "206.127.148.171",
+      "port": 24000,
+      "location": "eu",
+      "type": "PvP",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 21,
+      "name": "Ikthia",
+      "ip": "206.127.148.170",
+      "port": 24001,
+      "location": "eu",
+      "type": "PvE",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 22,
+      "name": "Kazor",
+      "ip": "206.127.148.172",
+      "port": 24001,
+      "location": "eu",
+      "type": "PvE",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 23,
+      "name": "Lightspire",
+      "ip": "206.127.148.176",
+      "port": 24000,
+      "location": "eu",
+      "type": "RP PvE",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 24,
+      "name": "Progenitor",
+      "ip": "206.127.148.175",
+      "port": 24000,
+      "location": "eu",
+      "type": "PvP",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 25,
+      "name": "Ravenous",
+      "ip": "206.127.148.172",
+      "port": 24000,
+      "location": "eu",
+      "type": "PvP",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 26,
+      "name": "StormFather",
+      "ip": "206.127.148.174",
+      "port": 24001,
+      "location": "eu",
+      "type": "PvE",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 27,
+      "name": "Toria",
+      "ip": "206.127.148.171",
+      "port": 24001,
+      "location": "eu",
+      "type": "RP PvE",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 28,
+      "name": "Treespeaker",
+      "ip": "206.127.148.169",
+      "port": 24000,
+      "location": "eu",
+      "type": "PvP",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 29,
+      "name": "Triton",
+      "ip": "206.127.148.177",
+      "port": 24001,
+      "location": "eu",
+      "type": "RP PvE",
+      "status": "offline",
+      "forumUrl": ""
+    },
+    {
+      "id": 30,
+      "name": "Zhur",
+      "ip": "206.127.148.174",
+      "port": 24000,
+      "location": "eu",
+      "type": "PvP",
+      "status": "offline",
+      "forumUrl": ""
     }
   ]
 }
+
